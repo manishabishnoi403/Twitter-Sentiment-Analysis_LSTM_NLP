@@ -1,15 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[3]:
-
-
 import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
 
-# Load Model and Tokenizer
+
 @st.cache_resource
 def load_model():
     return tf.keras.models.load_model("model_lstm.h5")
@@ -22,14 +16,14 @@ def load_tokenizer():
 model = load_model()
 tokenizer = load_tokenizer()
 
-# App UI
+
 st.title("Twitter Sentiment Classifier")
 st.write("Enter a tweet below and find out its predicted sentiment class.")
 
-# User input
+
 tweet = st.text_area("Enter a tweet:")
 
-# Predict
+
 if st.button("Predict"):
     if tweet.strip() != "":
         seq = tokenizer.texts_to_sequences([tweet])
@@ -44,7 +38,8 @@ if st.button("Predict"):
         st.warning("Please enter a tweet to classify.")
 
 
-# In[ ]:
+
+
 
 
 
